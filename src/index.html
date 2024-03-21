@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurshanterare</title>
+  <link href="/src/stylesheet.css" rel="stylesheet"> 
+  <!--<link rel="stylesheet" href="/src/css/main.scss"/>-->
+  <script src="/src/main.js" type="module"></script>
+  <script src="/src/main.ts" type="module"></script> 
+
+<!--
+<link rel="icon" type="image/x-icon" href="/bilder/favicon.ico">  -->
+</head>
+<body>
+    <div class="wrapper" id="landingpage">
+    <header>
+        <div class="header"><!--
+            <a href='/'><img src="/bilder/logotyp.png" alt="Logotyp" id="logotyp"> 
+            </a> -->
+
+            <!-- header-nav desktop -->
+            <nav class="desktop-menu">
+                <ul>
+                    <li><a href="/src/index.html">Start</a></li>
+                </ul>
+            </nav>
+        
+            <!-- Mobilmeny (Hamburgerikon) -->
+            <div class="mobile-menu-icon" id="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        
+            <!-- Mobilmeny (Navigationslänkar) -->
+            <nav class="mobile-menu" id="mobile-menu">
+                <button class="close-menu-icon" id="close-menu">X</button> 
+                <ul>
+                    <li><a href="/src/index.html">Start</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+    <main>
+        <h1>Kurser</h1>
+
+   <!-- <div class="subtitle"> -->
+            <h2>XXXX</h2>
+    </div>
+
+    <form id="courseForm">
+        <input type="text" id="code" placeholder="Kurskod"><br>
+        <input type="text" id="name" placeholder="Kursnamn"><br>
+        <!--Radio-knappar för att kunna göra flera val-->
+        <label><input type="radio" name="progression" value="A"> A</label>
+        <label><input type="radio" name="progression" value="B"> B</label>
+        <label><input type="radio" name="progression" value="C"> C</label><br>
+        
+        <input type="text" id="syllabus" placeholder="URL till kursplan"><br>
+        <button type="button" id="saveBtn">Lägg till Kurs</button>
+        <button type="button" id="clearAllBtn">Rensa Alla Kurser</button>
+    </form>
+    
+    <div id="courseList">
+        <!-- Kurslistan ska visas här -->
+    </div>
+
+
+</main>
+    <footer>
+        <p>© 2024 </p>
+        </footer>
+    </div>
+</body>
+</html>
+
