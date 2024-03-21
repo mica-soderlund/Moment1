@@ -1,3 +1,5 @@
+//TYPESCRIPT
+
 //Interface - kursinfo kontrakt
 interface CourseInfo {
     code: string;
