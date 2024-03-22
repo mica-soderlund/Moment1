@@ -1,3 +1,4 @@
+//TYPESCRIPT
 //Varibler/HTML-elementreferenser
 var saveBtnEl = document.getElementById('saveBtn');
 var courseListEl = document.getElementById('courseList');
@@ -9,7 +10,7 @@ clearAllBtnEl.addEventListener('click', clearAllCourses, false);
 function saveCourse() {
     var codeInput = document.getElementById("code").value;
     var nameInput = document.getElementById("name").value;
-    var progressionInput = document.querySelector('input[name="progession"]:checked').value;
+    var progressionInput = document.querySelector('input[name="progression"]:checked').value;
     var syllabusInput = document.getElementById("syllabus").value;
     var newCourse = {
         code: codeInput,
@@ -38,7 +39,7 @@ function loadCoursesFromLocalStorage() {
         addCourseToList(course);
     });
 }
-// Funktion för att rensa alla kurser från både DOM och localStorage
+// Funktion för att rensa kurser från både DOM och localStorage
 function clearAllCourses() {
     courseListEl.innerHTML = '';
     localStorage.removeItem('courses');

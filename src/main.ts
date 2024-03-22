@@ -21,7 +21,7 @@ clearAllBtnEl.addEventListener('click', clearAllCourses, false);
 function saveCourse(): void {
     const codeInput: string = (document.getElementById("code") as HTMLInputElement).value;
     const nameInput: string = (document.getElementById("name") as HTMLInputElement).value;
-    const progressionInput: string = (document.querySelector('input[name="progession"]:checked') as HTMLInputElement).value;
+    const progressionInput: string = (document.querySelector('input[name="progression"]:checked') as HTMLInputElement).value;
     const syllabusInput: string = (document.getElementById("syllabus") as HTMLInputElement).value;
 
     const newCourse: CourseInfo = {
