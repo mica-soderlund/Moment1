@@ -3,8 +3,8 @@
 
 /* Globala stilar */
 body {
-    background-color: base.$light-background;
-    font-family: base.$breadfont;
+    background-color: $lightmode-background;
+    font-family: $breadfont;
   }
   
   /* HEADER */
@@ -16,7 +16,7 @@ body {
     align-items: center;
     height: $header-height;
     padding: 0 20px;
-    background-color: rgba(18, 18, 18, 0.5); // Semi-transparent bakgrund
+    background-color: rgba(152, 147, 147, 0.5); // Semi-transparent bakgrund
   }
   
   .desktop-menu ul {
@@ -31,7 +31,7 @@ body {
       margin: 0 15px;
   
       &:hover {
-        color: #0099ff;
+        color: #90a094;
       }
     }
   }
@@ -86,7 +86,7 @@ body {
             text-decoration: none;
             color: #ffffff; 
             &:hover {
-              color: #0099ff; //  hover-effekt
+              color: #d4e2d9; //  hover-effekt
             }
           }
         }
