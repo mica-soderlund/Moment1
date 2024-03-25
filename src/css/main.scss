@@ -4,17 +4,7 @@
 // MOBIL-NAV 
 //media query för att hantera visningen på små skärmar
  @media (max-width: 768px) {
-    .header .mobile-menu-icon {
-        display: block;
-        }
-        
-    .header .desktop-menu {
-        display: none;
-        }
-        
-    .header .mobile-menu {
-        transform: translateX(0);
-        }
+
     }
     .wrapper {
         min-height: 100vh;

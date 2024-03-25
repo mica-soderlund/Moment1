@@ -19,31 +19,29 @@
         <h1>Kurser</h1>
 
 <div class="subtitle"> 
-            <h2>XXXX</h2>
- 
-
     <form id="courseForm">
+        <h2>Fyll i din kursinformation här</h2><br>
         <input type="text" id="code" placeholder="Kurskod"><br>
         <input type="text" id="name" placeholder="Kursnamn"><br>
+        <input type="text" id="syllabus" placeholder="URL till kursplan">
+        <p>Progression av kurs</p>
         <!--Radio-knappar för att kunna göra flera val-->
         <label><input type="radio" name="progression" value="A"> A</label>
         <label><input type="radio" name="progression" value="B"> B</label>
-        <label><input type="radio" name="progression" value="C"> C</label><br>
-        
-        <input type="text" id="syllabus" placeholder="URL till kursplan"><br>
+        <label><input type="radio" name="progression" value="C"> C</label><br><br>
         <button type="button" id="saveBtn">Lägg till Kurs</button>
-        <button type="button" id="clearAllBtn">Rensa Alla Kurser</button>
+        <button type="reset" id="clearAllBtn">Rensa Kurser</button>
     </form>
-    
+    <br>
     <div id="courseList">
         <!-- Kurslistan ska visas här -->
     </div>
 </div>
 
 </main>
-    <footer>
+    <div class="footer">
         <p>© 2024 </p>
-        </footer>
+    </div>
     </div>
 </body>
 </html>
