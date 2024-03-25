@@ -28,7 +28,6 @@ function saveCourse(): void {
         return;
     }
 
-    //  lägger till .value på de säkert typkonverterade elementen
     const codeInput: string = codeElement.value;
     const nameInput: string = nameElement.value;
     const syllabusInput: string = syllabusElement.value;
@@ -41,7 +40,6 @@ function saveCourse(): void {
         progression: progressionInput as 'A' | 'B' | 'C',
     };
 
-    addCourseToList(newCourse);
     saveCoursesToLocalStorage(newCourse);
     (document.getElementById("courseForm") as HTMLFormElement).reset();
 }
@@ -61,12 +59,31 @@ function addCourseToList(course: CourseInfo): void {
     `;
 }
 
-// Funktion för att spara kurser till localStorage
-function saveCoursesToLocalStorage(course: CourseInfo): void {
+// Funktion för att spara kurser till localStorage och hantera dubbletter
+function saveCoursesToLocalStorage(newCourse: CourseInfo): void {
     let courses = JSON.parse(localStorage.getItem('courses') || '[]');
-    courses.push(course);
+    const existingCourseIndex = courses.findIndex((course: CourseInfo) => course.code === newCourse.code);
+  
+    if (existingCourseIndex !== -1) {
+      const overwrite = confirm("Denna kurs finns redan. Vill du ersätta den?");
+      if (overwrite) {
+        courses[existingCourseIndex] = newCourse;
+      } else {
+        return;
+      }
+    } else {
+      courses.push(newCourse);
+    }
     localStorage.setItem('courses', JSON.stringify(courses));
-}
+    courseListEl.innerHTML = ''; 
+    courses.forEach(addCourseToList); 
+  }
+
+// Funktion för att rensa kurser från både DOM och localStorage
+function clearAllCourses(): void {
+    courseListEl.innerHTML = '';
+    localStorage.removeItem('courses');
+  }
 
 // Funktion för att läsa in kurser från localStorage vid sidans laddning
 function loadCoursesFromLocalStorage(): void {
@@ -74,12 +91,6 @@ function loadCoursesFromLocalStorage(): void {
     courses.forEach((course: CourseInfo) => {
         addCourseToList(course);
     });
-}
-
-// Funktion för att rensa kurser från både DOM och localStorage
-function clearAllCourses(): void {
-    courseListEl.innerHTML = '';
-    localStorage.removeItem('courses');
 }
 
 // Ladda kurser när sidan laddas

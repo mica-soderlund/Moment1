@@ -15,7 +15,6 @@ function saveCourse() {
     if (!codeElement || !nameElement || !progressionElement || !syllabusElement) {
         return;
     }
-    //  lägger till .value på de säkert typkonverterade elementen
     var codeInput = codeElement.value;
     var nameInput = nameElement.value;
     var syllabusInput = syllabusElement.value;
@@ -26,7 +25,6 @@ function saveCourse() {
         syllabus: syllabusInput,
         progression: progressionInput,
     };
-    addCourseToList(newCourse);
     saveCoursesToLocalStorage(newCourse);
     document.getElementById("courseForm").reset();
 }
@@ -34,11 +32,31 @@ function saveCourse() {
 function addCourseToList(course) {
     courseListEl.innerHTML += "\n    <div class='course'>\n        <ul>\n            <li>Kurskod: ".concat(course.code, "</li>\n            <li>Kursnamn: ").concat(course.name, "</li>\n            <li>Progression: ").concat(course.progression, "</li>\n            <li><a href=\"").concat(course.syllabus, "\" target=\"_blank\">L\u00E4nk till kursplan</a></li>\n        </ul>\n    </div>\n    ");
 }
-// Funktion för att spara kurser till localStorage
-function saveCoursesToLocalStorage(course) {
+// Funktion för att spara kurser till localStorage och hantera dubbletter
+function saveCoursesToLocalStorage(newCourse) {
     var courses = JSON.parse(localStorage.getItem('courses') || '[]');
-    courses.push(course);
+    var existingCourseIndex = courses.findIndex(function (course) { return course.code === newCourse.code; });
+    if (existingCourseIndex !== -1) {
+        var overwrite = confirm("Denna kurs finns redan. Vill du ersätta den?");
+        if (overwrite) {
+            courses[existingCourseIndex] = newCourse;
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        courses.push(newCourse);
+    }
+    //rensa/uppdatera listan innan uppdatering
     localStorage.setItem('courses', JSON.stringify(courses));
+    courseListEl.innerHTML = '';
+    courses.forEach(addCourseToList);
+}
+// Funktion för att rensa kurser från både DOM och localStorage
+function clearAllCourses() {
+    courseListEl.innerHTML = '';
+    localStorage.removeItem('courses');
 }
 // Funktion för att läsa in kurser från localStorage vid sidans laddning
 function loadCoursesFromLocalStorage() {
@@ -46,11 +64,6 @@ function loadCoursesFromLocalStorage() {
     courses.forEach(function (course) {
         addCourseToList(course);
     });
-}
-// Funktion för att rensa kurser från både DOM och localStorage
-function clearAllCourses() {
-    courseListEl.innerHTML = '';
-    localStorage.removeItem('courses');
 }
 // Ladda kurser när sidan laddas
 document.addEventListener('DOMContentLoaded', loadCoursesFromLocalStorage);
