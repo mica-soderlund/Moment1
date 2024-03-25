@@ -25,7 +25,6 @@ function saveCourse(): void {
     const progressionElement = document.querySelector('input[name="progression"]:checked') as HTMLInputElement | null;
 
     if (!codeElement || !nameElement || !progressionElement || !syllabusElement) {
-        alert('Fyll i samtliga fält innan du sparar!');
         return;
     }
 

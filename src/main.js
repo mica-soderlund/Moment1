@@ -13,7 +13,6 @@ function saveCourse() {
     var syllabusElement = document.getElementById("syllabus");
     var progressionElement = document.querySelector('input[name="progression"]:checked');
     if (!codeElement || !nameElement || !progressionElement || !syllabusElement) {
-        alert('Fyll i samtliga fält innan du sparar!');
         return;
     }
     //  lägger till .value på de säkert typkonverterade elementen
