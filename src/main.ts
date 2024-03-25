@@ -19,16 +19,10 @@ clearAllBtnEl.addEventListener('click', clearAllCourses, false);
 
 //Function - spara kurs
 function saveCourse(): void {
-    //hämtar input--värden
     const codeInput: string = (document.getElementById("code") as HTMLInputElement).value;
     const nameInput: string = (document.getElementById("name") as HTMLInputElement).value;
-    const progressionInput: string = (document.querySelector('input[name="progression"]:checked') as HTMLInputElement).value;
+    const progressionInput: string = (document.querySelector('input[name="progession"]:checked') as HTMLInputElement).value;
     const syllabusInput: string = (document.getElementById("syllabus") as HTMLInputElement).value;
-    //kontrollerar om något fält saknar värde 
-    if (!codeInput || !nameInput || !progressionInput || !syllabusInput) {
-        alert("Fyll i alla fält innan du sparar!");
-        return; 
-    }
 
     const newCourse: CourseInfo = {
         code: codeInput,
