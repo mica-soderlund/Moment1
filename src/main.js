@@ -6,17 +6,26 @@ var clearAllBtnEl = document.getElementById('clearAllBtn');
 //Eventlyssnare
 saveBtnEl.addEventListener('click', saveCourse, false);
 clearAllBtnEl.addEventListener('click', clearAllCourses, false);
-//Function - spara kurs
+//Function - spara kurs - säkerställer att varje element inte är 'null' innan 'value'
 function saveCourse() {
-    var codeInput = document.getElementById("code").value;
-    var nameInput = document.getElementById("name").value;
-    var progressionInput = document.querySelector('input[name="progression"]:checked').value;
-    var syllabusInput = document.getElementById("syllabus").value;
+    var codeElement = document.getElementById("code");
+    var nameElement = document.getElementById("name");
+    var syllabusElement = document.getElementById("syllabus");
+    var progressionElement = document.querySelector('input[name="progression"]:checked');
+    if (!codeElement || !nameElement || !progressionElement || !syllabusElement) {
+        alert('Fyll i samtliga fält innan du sparar!');
+        return;
+    }
+    //  lägger till .value på de säkert typkonverterade elementen
+    var codeInput = codeElement.value;
+    var nameInput = nameElement.value;
+    var syllabusInput = syllabusElement.value;
+    var progressionInput = progressionElement.value;
     var newCourse = {
         code: codeInput,
         name: nameInput,
+        syllabus: syllabusInput,
         progression: progressionInput,
-        syllabus: syllabusInput
     };
     addCourseToList(newCourse);
     saveCoursesToLocalStorage(newCourse);

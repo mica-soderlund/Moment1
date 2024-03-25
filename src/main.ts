@@ -17,24 +17,36 @@ const clearAllBtnEl = document.getElementById('clearAllBtn') as HTMLButtonElemen
 saveBtnEl.addEventListener('click', saveCourse, false);
 clearAllBtnEl.addEventListener('click', clearAllCourses, false);
 
-//Function - spara kurs
+//Function - spara kurs - säkerställer att varje element inte är 'null' innan 'value'
 function saveCourse(): void {
-    const codeInput: string = (document.getElementById("code") as HTMLInputElement).value;
-    const nameInput: string = (document.getElementById("name") as HTMLInputElement).value;
-    const progressionInput: string = (document.querySelector('input[name="progression"]:checked') as HTMLInputElement).value;
-    const syllabusInput: string = (document.getElementById("syllabus") as HTMLInputElement).value;
+    const codeElement = document.getElementById("code") as HTMLInputElement | null;
+    const nameElement = document.getElementById("name") as HTMLInputElement | null;
+    const syllabusElement = document.getElementById("syllabus") as HTMLInputElement | null;
+    const progressionElement = document.querySelector('input[name="progression"]:checked') as HTMLInputElement | null;
+
+    if (!codeElement || !nameElement || !progressionElement || !syllabusElement) {
+        alert('Fyll i samtliga fält innan du sparar!');
+        return;
+    }
+
+    //  lägger till .value på de säkert typkonverterade elementen
+    const codeInput: string = codeElement.value;
+    const nameInput: string = nameElement.value;
+    const syllabusInput: string = syllabusElement.value;
+    const progressionInput: string = progressionElement.value;
 
     const newCourse: CourseInfo = {
         code: codeInput,
         name: nameInput,
+        syllabus: syllabusInput,
         progression: progressionInput as 'A' | 'B' | 'C',
-        syllabus: syllabusInput
     };
 
     addCourseToList(newCourse);
     saveCoursesToLocalStorage(newCourse);
     (document.getElementById("courseForm") as HTMLFormElement).reset();
 }
+
 
 // Funktion för att lägga till kursinformation i listan och uppdatera DOM
 function addCourseToList(course: CourseInfo): void {
