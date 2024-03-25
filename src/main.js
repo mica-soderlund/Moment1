@@ -48,7 +48,6 @@ function saveCoursesToLocalStorage(newCourse) {
     else {
         courses.push(newCourse);
     }
-    //rensa/uppdatera listan innan uppdatering
     localStorage.setItem('courses', JSON.stringify(courses));
     courseListEl.innerHTML = '';
     courses.forEach(addCourseToList);
@@ -61,9 +60,8 @@ function clearAllCourses() {
 // Funktion för att läsa in kurser från localStorage vid sidans laddning
 function loadCoursesFromLocalStorage() {
     var courses = JSON.parse(localStorage.getItem('courses') || '[]');
-    courses.forEach(function (course) {
-        addCourseToList(course);
-    });
+    courseListEl.innerHTML = '';
+    courses.forEach(addCourseToList);
 }
 // Ladda kurser när sidan laddas
 document.addEventListener('DOMContentLoaded', loadCoursesFromLocalStorage);

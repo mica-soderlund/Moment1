@@ -88,9 +88,8 @@ function clearAllCourses(): void {
 // Funktion för att läsa in kurser från localStorage vid sidans laddning
 function loadCoursesFromLocalStorage(): void {
     let courses = JSON.parse(localStorage.getItem('courses') || '[]');
-    courses.forEach((course: CourseInfo) => {
-        addCourseToList(course);
-    });
+    courseListEl.innerHTML = '';
+    courses.forEach(addCourseToList);
 }
 
 // Ladda kurser när sidan laddas
