@@ -85,8 +85,8 @@ font-size: 1.1em;
 
 //knappar
 
-#saveBtn, #clearAllBtn  { 
-    padding: 0.8em 1.5em;
+#saveBtn, #clearAllBtn, #updateButtonId { 
+    padding: 0.8em 1.5em; 
     font-family: $breadfont;
     border-radius: 10px;
     background: linear-gradient(145deg, #985ad2, #1b9aaa);
